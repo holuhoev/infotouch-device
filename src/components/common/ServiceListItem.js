@@ -30,6 +30,7 @@ export default class ServiceListItem extends React.Component {
 
 const styles = StyleSheet.create({
     fioText: {
+        fontSize:   24,
         fontWeight: 'bold',
         color:      'black'
     }

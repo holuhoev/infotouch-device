@@ -52,6 +52,7 @@ class PersonListItem extends React.PureComponent {
 
 const styles = StyleSheet.create({
     fioText: {
+        fontSize:   24,
         fontWeight: 'bold',
         color:      'black'
     }
