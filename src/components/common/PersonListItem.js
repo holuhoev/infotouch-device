@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
-import { Button, ListItem } from "react-native-elements";
+import { ListItem } from "react-native-elements";
 import { Text, StyleSheet, View } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
 
 
 class PersonListItem extends React.PureComponent {
@@ -38,9 +39,10 @@ class PersonListItem extends React.PureComponent {
                 containerStyle={ { borderBottomWidth: 0 } }
                 chevron
                 rightElement={ (
-                    <Button
-                        title={ "Местоположение" }
-                        type={ 'outline' }
+                    <Entypo
+                        name="location"
+                        size={ 32 }
+                        color={ "#26c2ed" }
                         onPress={ () => getRoute(id, fio) }
                     />
                 ) }

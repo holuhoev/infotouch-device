@@ -1,10 +1,11 @@
-import React, { Fragment } from 'react'
-import { Button, ListItem } from "react-native-elements";
-import { Text, StyleSheet, View } from 'react-native';
+import React from 'react'
+import { ListItem } from "react-native-elements";
+import { Text, StyleSheet } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
 
 export default class ServiceListItem extends React.Component {
     render() {
-        const { id, title, typeLabel, floor, getRoute } = this.props;
+        const { id, title, typeLabel, floor, getRoute, pointId } = this.props;
 
         return (
             <ListItem
@@ -16,11 +17,12 @@ export default class ServiceListItem extends React.Component {
                 subtitle={ `${ typeLabel } ${ floor ? floor + ' этаж' : '' }` }
                 subtitleStyle={ { color: 'black' } }
                 containerStyle={ { borderBottomWidth: 0 } }
-                rightElement={ (
-                    <Button
-                        title={ "Местоположение" }
-                        type={ 'outline' }
-                        onPress={ () => getRoute(id,title) }
+                rightElement={ (!!pointId) && (
+                    <Entypo
+                        name="location"
+                        size={ 32 }
+                        color={ "#26c2ed" }
+                        onPress={ () => getRoute(id, title) }
                     />
                 ) }
             />

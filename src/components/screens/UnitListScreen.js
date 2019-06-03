@@ -23,9 +23,9 @@ class UnitListScreen extends Component {
 
     }
 
-    static navigationOptions = ({navigation}) => {
+    static navigationOptions = ({ navigation }) => {
         return {
-            title: 'Поиск по подразделениям',
+            title:       'Поиск по подразделениям',
             headerRight: (<HomeIcon onPress={ () => navigation.popToTop() }/>)
         };
     };
@@ -108,9 +108,7 @@ class UnitListScreen extends Component {
 
         return (
             <UnitListItem
-                id={ item.id }
-                title={ item.title }
-                description={ item.description }
+                { ...item }
                 getRoute={ this.onRouteClick }
             />
         )

@@ -1,10 +1,11 @@
-import React, { Fragment } from 'react'
-import { Button, ListItem } from "react-native-elements";
+import React  from 'react'
+import {  ListItem } from "react-native-elements";
 import { Text, StyleSheet } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
 
 export default class UnitListItem extends React.Component {
     render() {
-        const { id, title, description, getRoute } = this.props;
+        const { id, title, description, getRoute,schemeElementId } = this.props;
 
         return (
             <ListItem
@@ -16,11 +17,12 @@ export default class UnitListItem extends React.Component {
                 subtitle={ description }
                 subtitleStyle={ { color: 'black' } }
                 containerStyle={ { borderBottomWidth: 0 } }
-                rightElement={ (
-                    <Button
-                        title={ "Местоположение" }
-                        type={ 'outline' }
-                        onPress={ () => getRoute(id,title) }
+                rightElement={  (!!schemeElementId) && (
+                    <Entypo
+                        name="location"
+                        size={ 32 }
+                        color={ "#26c2ed" }
+                        onPress={ () => getRoute(id, title) }
                     />
                 ) }
             />
