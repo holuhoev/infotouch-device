@@ -60,82 +60,91 @@ class MainMenuScreen extends Component {
                     flex: 1,
                 } }
             >
-                <Text
+                <View
                     style={ {
-                        color:           '#FFF',
-                        backgroundColor: 'rgba(52,52,52,0.19)',
-                        fontSize:        28,
-                        fontWeight:      'bold',
-                        textAlign:       'center'
+                        flex:            1,
+                        backgroundColor: 'rgba(52,52,52,0.2)',
+                        paddingBottom:   30,
+                        paddingTop:      50
                     } }
                 >
-                    { title }
-                </Text>
-                <View style={ styles.container }>
-                    <Button
-                        icon={ {
-                            name:  "people",
-                            size:  40,
-                            color: "white"
+                    <Text
+                        style={ {
+                            color:         '#FFF',
+                            fontSize:      28,
+                            fontWeight:    'bold',
+                            textAlign:     'center',
+                            paddingBottom: 50
                         } }
-                        onPress={ () => this.props.navigation.navigate(ROUTES.PersonList) }
-                        buttonStyle={ [ styles.cell ] }
-                        title={ 'Сотрудники' }
-                        titleStyle={ styles.buttonTitle }
+                    >
+                        { title }
+                    </Text>
+                    <View style={ styles.container }>
+                        <Button
+                            icon={ {
+                                name:  "people",
+                                size:  40,
+                                color: "white"
+                            } }
+                            onPress={ () => this.props.navigation.navigate(ROUTES.PersonList) }
+                            buttonStyle={ [ styles.cell ] }
+                            title={ 'Сотрудники' }
+                            titleStyle={ styles.buttonTitle }
 
-                    />
-                    <Button
-                        icon={
-                            <Icon
-                                name={ "event-note" }
-                                type={ "material" }
-                                color={ 'white' }
-                                size={ 40 }
-                            />
-                        }
-                        onPress={ () => this.props.navigation.navigate(ROUTES.NewsList) }
-                        buttonStyle={ [ styles.cell ] }
-                        type='outline'
-                        titleStyle={ styles.buttonTitle }
-                        title={ 'Новости' }
-                    />
-                    <Button
-                        onPress={ () => this.props.navigation.navigate(ROUTES.Events) }
-                        buttonStyle={ [ styles.cell ] }
-                        type='outline'
-                        titleStyle={ styles.buttonTitle }
-                        title={ 'Сегодня, 4 июня' }
-                    />
-                    <Button
-                        onPress={ () => this.props.navigation.navigate(ROUTES.UnitList) }
-                        buttonStyle={ [ styles.cell ] }
-                        type='outline'
-                        titleStyle={ styles.buttonTitle }
-                        title={ 'Подразделения' }
-                    />
-                    <Button
-                        onPress={ () => this.props.navigation.navigate(ROUTES.ServiceList) }
-                        buttonStyle={ [ styles.cell ] }
-                        type='outline'
-                        titleStyle={ styles.buttonTitle }
-                        title={ 'Услуги' }
-                    />
-                    <Button
-                        onPress={ () => this.props.navigation.navigate(ROUTES.BuildingMap) }
-                        buttonStyle={ [ styles.cell ] }
-                        type='outline'
-                        titleStyle={ styles.buttonTitle }
-                        title={ 'Схема' }
-                        icon={ (
-                            <Icon
-                                name={ "my-location" }
-                                color={ 'white' }
-                                type={ "material" }
-                                size={ 40 }
-                            />
+                        />
+                        <Button
+                            icon={
+                                <Icon
+                                    name={ "event-note" }
+                                    type={ "material" }
+                                    color={ 'white' }
+                                    size={ 40 }
+                                />
+                            }
+                            onPress={ () => this.props.navigation.navigate(ROUTES.NewsList) }
+                            buttonStyle={ [ styles.cell ] }
+                            type='outline'
+                            titleStyle={ styles.buttonTitle }
+                            title={ 'Новости' }
+                        />
+                        <Button
+                            onPress={ () => this.props.navigation.navigate(ROUTES.Events) }
+                            buttonStyle={ [ styles.cell ] }
+                            type='outline'
+                            titleStyle={ styles.buttonTitle }
+                            title={ 'Сегодня, 4 июня' }
+                        />
+                        <Button
+                            onPress={ () => this.props.navigation.navigate(ROUTES.UnitList) }
+                            buttonStyle={ [ styles.cell ] }
+                            type='outline'
+                            titleStyle={ styles.buttonTitle }
+                            title={ 'Подразделения' }
+                        />
+                        <Button
+                            onPress={ () => this.props.navigation.navigate(ROUTES.ServiceList) }
+                            buttonStyle={ [ styles.cell ] }
+                            type='outline'
+                            titleStyle={ styles.buttonTitle }
+                            title={ 'Услуги' }
+                        />
+                        <Button
+                            onPress={ () => this.props.navigation.navigate(ROUTES.BuildingMap) }
+                            buttonStyle={ [ styles.cell ] }
+                            type='outline'
+                            titleStyle={ styles.buttonTitle }
+                            title={ 'Схема' }
+                            icon={ (
+                                <Icon
+                                    name={ "my-location" }
+                                    color={ 'white' }
+                                    type={ "material" }
+                                    size={ 40 }
+                                />
 
-                        ) }
-                    />
+                            ) }
+                        />
+                    </View>
                 </View>
                 <AnnouncementRunnableLine/>
             </ImageBackground>
@@ -145,15 +154,10 @@ class MainMenuScreen extends Component {
 
 const styles = StyleSheet.create({
     container:   {
-        flex:            1,
-        backgroundColor: 'rgba(52,52,52,0.2)',
-        flexWrap:        'wrap',
-        flexDirection:   'row',
-        justifyContent:  'space-around',
-        alignItems:      'flex-start',
-        paddingBottom:   30,
-        paddingTop:      140,
-        marginTop:       -64
+        flexWrap:       'wrap',
+        flexDirection:  'row',
+        justifyContent: 'space-around',
+        alignItems:     'flex-start'
     },
     cell:        {
         height:          200,
