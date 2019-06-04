@@ -25,7 +25,7 @@ export const selectUnitPointId = (state, id) => {
     const elementId = selectUnitSchemeElementId(state, id);
 
     return elementId
-        ? selectElementById(state, elementId).pointId
+        ? selectElementById(state, elementId).centerPointId
         : null;
 };
 
