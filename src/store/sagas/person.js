@@ -25,8 +25,10 @@ function* handleChangePersonsSearchQuery(action) {
 
 function* fetchPersons(action) {
     try {
-        const nextPage = yield select(selectCurrentPage);
-        const params   = { searchQuery: action.payload, page: nextPage };
+        const state       = yield select();
+        const nextPage    = selectCurrentPage(state);
+        const searchQuery = state.persons.searchQuery;
+        const params      = { searchQuery: searchQuery, page: nextPage };
 
         const personList = yield call(getPersons, params);
 

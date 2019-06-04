@@ -28,8 +28,3 @@ export const selectUnitPointId = (state, id) => {
         ? selectElementById(state, elementId).centerPointId
         : null;
 };
-
-export const selectUnitTitle = (state, id) => {
-    const unit = selectUnitById(state, id);
-    return unit ? unit.title : null;
-};
