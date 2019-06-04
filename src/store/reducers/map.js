@@ -95,7 +95,7 @@ const mapPoint = elementsObj => point => {
 
 
 const mapElement = getFloor => element => {
-    const { coordinates, id, label, type, buildingSchemeId, pointId } = element;
+    const { coordinates, id, label, type, buildingSchemeId, centerPointId } = element;
 
     const floor        = getFloor(buildingSchemeId);
     const textCentroid = calculateCentroid(coordinates);
@@ -106,7 +106,7 @@ const mapElement = getFloor => element => {
         type,
         coordinates,
         label,
-        pointId,
+        centerPointId,
         floor,
         textCentroid,
         buildingSchemeId,

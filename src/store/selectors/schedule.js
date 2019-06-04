@@ -20,9 +20,10 @@ const selectPersonRoom = (state, personId) => {
 
 export const selectPersonPointId = (state, personId) => {
     const room = selectPersonRoom(state, personId);
+    room && console.log(selectElementById(state, room.mapElementId));
 
     return room
-        ? selectElementById(state, room.mapElementId).pointId
+        ? selectElementById(state, room.mapElementId).centerPointId
         : null;
 };
 

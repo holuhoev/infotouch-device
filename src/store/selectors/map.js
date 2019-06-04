@@ -10,12 +10,12 @@ import { selectServicePointId, selectServicesForMap } from "./services";
 
 
 const selectMapData            = state => state.map.data;
-export const selectElementById = (state, id) => selectMapData(state).elements[id];
+export const selectElementById = (state, id) => selectMapData(state).elements[ id ];
 const selectEdges              = state => selectMapData(state).edges;
 
 export const selectSchemes            = state => selectMapData(state).schemes;
 export const selectActiveSchemeIndex  = state => findIndex(propEq('id', selectSchemeId(state)))(selectSchemes(state));
-export const selectSchemeId           = state => selectSchemes(state)[state.map.buildingSchemeIndex].id;
+export const selectSchemeId           = state => selectSchemes(state)[ state.map.buildingSchemeIndex ].id;
 export const selectElementsBySchemeId = (state, schemeId) => {
 
     return values(selectMapData(state).elements)
@@ -40,7 +40,7 @@ export const selectElements  = (state, fromScreen, navigationProps) => {
             }
         });
 };
-export const selectPointById = points => id => points[id];
+export const selectPointById = points => id => points[ id ];
 export const selectPoints    = (state) => selectMapData(state).points;
 
 const selectDestinationPointId = (state, fromScreen, navigationProps) => {
@@ -59,15 +59,15 @@ const selectDestinationPointId = (state, fromScreen, navigationProps) => {
     }
 };
 
-const addVertex               = (vertex, all) => ({ ...(all || {}), [vertex]: 1 });
+const addVertex               = (vertex, all) => ({ ...(all || {}), [ vertex ]: 1 });
 const toGraph                 = (vertices, relation) => {
-    const vertex_1 = relation[0];
-    const vertex_2 = relation[1];
+    const vertex_1 = relation[ 0 ];
+    const vertex_2 = relation[ 1 ];
 
     return {
         ...vertices,
-        [vertex_1]: addVertex(vertex_2, vertices[vertex_1]),
-        [vertex_2]: addVertex(vertex_1, vertices[vertex_2])
+        [ vertex_1 ]: addVertex(vertex_2, vertices[ vertex_1 ]),
+        [ vertex_2 ]: addVertex(vertex_1, vertices[ vertex_2 ])
     }
 };
 export const mapGraphSelector = createSelector(
@@ -85,12 +85,13 @@ const routePointsSelector     = createSelector(
         selectPoints
     ],
     (graph, startPointId, endPointId, points) => {
+        console.log("endPointId:" + endPointId );
 
         if (!startPointId || !endPointId)
             return null;
 
         const pointsRoutes = graph.shortestPath(startPointId.toString(), endPointId.toString())
-            .concat([startPointId])
+            .concat([ startPointId ])
             .reverse()
             .map(selectPointById(points));
 
@@ -109,8 +110,8 @@ export const selectRoute      = createSelector(
             return null;
 
 
-        return routePointsGrouped[schemeId]
-            ? routePointsGrouped[schemeId]
+        return routePointsGrouped[ schemeId ]
+            ? routePointsGrouped[ schemeId ]
                 .map(pointToString)
                 .join(' ')
             : null
@@ -133,7 +134,7 @@ const routeStairsPointsSelector     = createSelector(
 
             return (schemeId === startSchemeId + "")
                 ? last(points)
-                : points[0]
+                : points[ 0 ]
 
         }, routePointsGrouped)
     });
@@ -144,7 +145,7 @@ export const selectRouteStairsPoint = createSelector(
     ],
     (routeStairsPoint, schemeId) => {
 
-        return routeStairsPoint[schemeId];
+        return routeStairsPoint[ schemeId ];
     }
 );
 
@@ -162,7 +163,7 @@ export const schemeServicesSelector = createSelector(
 
             return {
                 ...point,
-                serviceType: services[point.id]
+                serviceType: services[ point.id ]
             }
         }, pointList));
     }
@@ -170,6 +171,10 @@ export const schemeServicesSelector = createSelector(
 
 export const selectPositionPoint = state => {
     const positionPointId = selectDevicePointId(state);
+    const schemeId        = selectSchemeId(state);
+    const points          = selectPoints(state);
 
-    return selectPointById(selectPoints(state))(positionPointId)
+    const currentPoints = filter(p => p.buildingSchemeId === schemeId, points);
+
+    return selectPointById(currentPoints)(positionPointId)
 };
